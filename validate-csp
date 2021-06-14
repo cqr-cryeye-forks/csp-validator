@@ -8,6 +8,12 @@
 # type    - Severity of the message. Values can be 'error', 'success' or 'info'.
 #
 # Returns a formatted string of the message.
+
+# Disable ssl verification
+require 'openssl'
+$VERBOSE = nil
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 def output(message, type)
   puts "\e[31m[ ✘ ]\e[0m #{message}" if type == 'error'
   puts "\e[32m[ ✔︎ ]\e[0m #{message}" if type == 'success'
